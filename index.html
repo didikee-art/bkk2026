@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BKK 2026 chill vibe 🌿</title>
+    <title>BKK 2026 大麻成手帖 🌿</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Noto+Sans+TC:wght@300;500;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,7 +14,7 @@
             font-family: 'Quicksand', 'Noto Sans TC', sans-serif; 
             background-color: var(--muji-bg); 
             color: var(--muji-text); 
-            background-image: url('weed.png'); 
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); 
         }
         .formal-script { font-family: 'Petit Formal Script', cursive; }
         .soft-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
@@ -65,11 +65,11 @@
 
         // 行程數據
         const itinerary = {
-            1: { date: "8 Jan", title: "🌿 落機隊糖vibe", items: [{ t: "20:00", l: "勝利紀念碑", d: "remark：行陣🌿隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
+            1: { date: "8 Jan", title: "🌿 深夜隊草任務", items: [{ t: "20:00", l: "勝利紀念碑", d: "remark：行陣🌿隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
             2: { date: "9 Jan", title: "🍜 食欲暴走", items: [{ t: "12:00", l: "船麵一條街", d: "Rua Thong (12-18 泰銖)", bolt: true }, { t: "19:00", l: "唐人街", d: "耀華力路掃街" }] },
             3: { date: "10 Jan", title: "💆 按摩行街", items: [{ t: "Day", l: "Asok 區", d: "隊草、按摩、行街" }] },
             4: { date: "11 Jan", title: "🍢 Sutthisan", items: [{ t: "16:00", l: "Sutthisan 3號出口", d: "按摩、掃街、夜市、水果檔" }] },
-            5: { date: "12 Jan", title: "✈️ MDK 周邊", items: [{ t: "Day", l: "機場附近 Hotel", d: "最後採買與休整" }] },
+            5: { date: "12 Jan", title: "✈️ MDK 準備", items: [{ t: "Day", l: "機場附近 Hotel", d: "最後採買與休整" }] },
             6: { date: "13 Jan", title: "🏠 返港", items: [{ t: "05:00", l: "MDK 機場", d: "8am 機準時返香港", bolt: true }] }
         };
 
@@ -124,9 +124,9 @@
         // 2. 清單頁面 (已拆分)
         function renderLists(c) {
             const checks = getDB('bkk_chk').length ? getDB('bkk_chk') : [
-                {id:1, t:"TDAC & SIM Card", d:false},
-                {id:2, t:"Passport & ID", d:false},
-                {id:3, t:"Ipad & charging", d:false},
+                {id:1, t:"護照及機票", d:false},
+                {id:2, t:"泰銖現金", d:false},
+                {id:3, t:"大麻成周邊", d:false},
                 {id:4, t:"手信拿齊未", d:false}
             ];
             setDB('bkk_chk', checks);
@@ -161,7 +161,7 @@
             c.innerHTML = `
                 <div class="bg-stone-800 p-6 rounded-[30px] text-white mb-6 soft-shadow">
                     <p class="text-[10px] opacity-40 uppercase font-black tracking-widest">THB to HKD</p>
-                    <input id="calcInput" type="text" placeholder="100*0.24" class="w-full bg-transparent text-2xl font-black mt-2 focus:outline-none placeholder-stone-600 text-[#D9A08B]">
+                    <input id="calcInput" type="text" placeholder="500 + 200" class="w-full bg-transparent text-2xl font-black mt-2 focus:outline-none placeholder-stone-600 text-[#D9A08B]">
                     <div id="calcResult" class="text-sm font-bold opacity-60 mt-1">≈ HKD 0.00</div>
                 </div>
                 <div class="text-center py-10 opacity-30 italic text-xs">記帳功能已備就緒...</div>
