@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BKK 2026 chill vibe 🌿</title>
+    <title>BKK 2026 chill vibe🌿</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Noto+Sans+TC:wght@300;500;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,7 +28,7 @@
 <body class="pb-28">
 
     <header class="p-8 pb-4 text-center">
-        <div class="formal-script text-[#D9A08B] text-sm">Voyage à Bangkok</div>
+        <div class="formal-script text-[#D9A08B] text-sm">chill vibe Bangkok</div>
         <h1 class="text-3xl font-black mt-1 tracking-widest">BKK 2026 🌿</h1>
     </header>
 
@@ -65,7 +65,7 @@
 
         // 行程數據
         const itinerary = {
-            1: { date: "8 Jan", title: "🌿 落機任務🍬", items: [{ t: "23:00", l: "勝利紀念碑", d: "remark：行陣🌿隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
+            1: { date: "8 Jan", title: "🌿 落機任務🍬", items: [{ t: "23:00", l: "勝利紀念碑", d: "過e-gate, 搭A2, 行陣🌿隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
             2: { date: "9 Jan", title: "🍜 食欲暴走", items: [{ t: "12:00", l: "船麵一條街", d: "Rua Thong (12-18 泰銖)", bolt: true }, { t: "15:00", l: "唐人街", d: "耀華力路掃街" }] },
             3: { date: "10 Jan", title: "💆 按摩行街", items: [{ t: "Day", l: "Asok 區", d: "隊草、按摩、飄～" }] },
             4: { date: "11 Jan", title: "🍢 Sutthisan", items: [{ t: "16:00", l: "Sutthisan 3號出口", d: "按摩、掃街、夜市、水果檔" }] },
@@ -124,9 +124,9 @@
         // 2. 清單頁面 (已拆分)
         function renderLists(c) {
             const checks = getDB('bkk_chk').length ? getDB('bkk_chk') : [
-                {id:1, t:"護照及機票", d:false},
-                {id:2, t:"泰銖現金", d:false},
-                {id:3, t:"大麻成周邊", d:false},
+                {id:1, t:"eTDAC & SIM Card", d:false},
+                {id:2, t:"Ipad & charging", d:false},
+                {id:3, t:"眼鏡👓", d:false},
                 {id:4, t:"手信拿齊未", d:false}
             ];
             setDB('bkk_chk', checks);
