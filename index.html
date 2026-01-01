@@ -14,7 +14,7 @@
         .formal-script { font-family: 'Petit Formal Script', cursive; }
         .soft-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
         .active-day { background-color: var(--muji-accent) !important; color: white !important; transform: translateY(-5px); }
-        .illustration-banner { height: 180px; background: url('https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&q=80&w=800') center/cover; border-radius: 30px; border: 4px solid white; }
+        .illustration-banner { height: 180px; background: url('weed.png') center/cover; border-radius: 30px; border: 4px solid white; }
         .btn-pill { border-radius: 16px; transition: all 0.2s; }
         input, textarea { background-color: #F3F1ED; border-radius: 12px; padding: 10px; border: 1px solid transparent; width: 100%; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -93,7 +93,7 @@
             }
 
             c.innerHTML = `
-                <div class="illustration-banner mb-6"></div>
+                <img src="weed.png" class="w-full rounded-[30px] shadow-lg mb-6">
                 <div class="flex justify-between mb-8 overflow-x-auto no-scrollbar gap-2 py-2">${btns}</div>
                 <div class="mb-4"><p class="formal-script text-[#D9A08B]">${data.date}</p><h2 class="text-2xl font-black italic">${data.title}</h2></div>
                 <div class="space-y-4">${data.items.map(i => `<div class="bg-white p-6 rounded-[25px] soft-shadow border-l-4 ${i.bolt?'border-[#D9A08B]':'border-[#A8B79B]'}"><h3 class="font-black">${i.l}</h3><p class="text-[10px] text-gray-400 mt-1">${i.d}</p></div>`).join('')}</div>
