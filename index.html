@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BKK 2026 大麻成手帖 🌿</title>
+    <title>BKK 2026 chill vibe 🌿</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Noto+Sans+TC:wght@300;500;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root { --muji-bg: #FDFBF7; --muji-accent: #D9A08B; --muji-text: #5A544E; }
-        body { font-family: 'Quicksand', 'Noto Sans TC', sans-serif; background-color: var(--muji-bg); color: var(--muji-text); background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); }
+        body { 
+            font-family: 'Quicksand', 'Noto Sans TC', sans-serif; 
+            background-color: var(--muji-bg); 
+            color: var(--muji-text); 
+            background-image: url('weed.png'); 
+        }
         .formal-script { font-family: 'Petit Formal Script', cursive; }
         .soft-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
         .active-day { background-color: var(--muji-accent) !important; color: white !important; transform: translateY(-5px); }
-        .illustration-banner { height: 180px; background: url('weed.png') center/cover; border-radius: 30px; border: 4px solid white; }
+        .nav-active { color: var(--muji-accent) !important; opacity: 1 !important; }
         .btn-pill { border-radius: 16px; transition: all 0.2s; }
         input, textarea { background-color: #F3F1ED; border-radius: 12px; padding: 10px; border: 1px solid transparent; width: 100%; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -24,23 +29,27 @@
 
     <header class="p-8 pb-4 text-center">
         <div class="formal-script text-[#D9A08B] text-sm">Voyage à Bangkok</div>
-        <h1 class="text-3xl font-black mt-1">BKK 2026 🌿</h1>
+        <h1 class="text-3xl font-black mt-1 tracking-widest">BKK 2026 🌿</h1>
     </header>
 
     <main id="main-content" class="px-6">
         </main>
 
     <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 flex justify-around items-center py-5 z-50">
-        <button onclick="switchTab('plan')" class="nav-item flex flex-col items-center gap-1 text-[#D9A08B]">
+        <button id="nav-plan" onclick="switchTab('plan')" class="nav-item flex flex-col items-center gap-1">
             <i class="fa-solid fa-map-location-dot text-xl"></i>
-            <span class="text-[9px] font-bold tracking-widest">PLAN</span>
+            <span class="text-[9px] font-bold">PLAN</span>
         </button>
-        <button onclick="switchTab('wallet')" class="nav-item flex flex-col items-center gap-1 opacity-20">
+        <button id="nav-lists" onclick="switchTab('lists')" class="nav-item flex flex-col items-center gap-1 opacity-20">
+            <i class="fa-solid fa-clipboard-list text-xl"></i>
+            <span class="text-[9px] font-bold">LISTS</span>
+        </button>
+        <button id="nav-wallet" onclick="switchTab('wallet')" class="nav-item flex flex-col items-center gap-1 opacity-20">
             <i class="fa-solid fa-calculator text-xl"></i>
             <span class="text-[9px] font-bold">WALLET</span>
         </button>
-        <button onclick="switchTab('info')" class="nav-item flex flex-col items-center gap-1 opacity-20">
-            <i class="fa-solid fa-info-circle text-xl"></i>
+        <button id="nav-info" onclick="switchTab('info')" class="nav-item flex flex-col items-center gap-1 opacity-20">
+            <i class="fa-solid fa-circle-info text-xl"></i>
             <span class="text-[9px] font-bold">INFO</span>
         </button>
     </nav>
@@ -50,54 +59,94 @@
         let currentDay = 1;
         let currentTab = 'plan';
 
-        // 模擬數據
+        // 數據存儲工具
         const getDB = (k) => JSON.parse(localStorage.getItem(k)) || [];
         const setDB = (k, d) => localStorage.setItem(k, JSON.stringify(d));
 
+        // 行程數據
         const itinerary = {
-            1: { date: "8 Jan", title: "🌿 深夜隊草任務", items: [{ t: "20:00", l: "勝利紀念碑", d: "remark：隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
+            1: { date: "8 Jan", title: "🌿 落機隊糖vibe", items: [{ t: "20:00", l: "勝利紀念碑", d: "remark：行陣🌿隊支草就好瞓lahh", links: ["Y Si Cannabis"] }] },
             2: { date: "9 Jan", title: "🍜 食欲暴走", items: [{ t: "12:00", l: "船麵一條街", d: "Rua Thong (12-18 泰銖)", bolt: true }, { t: "19:00", l: "唐人街", d: "耀華力路掃街" }] },
-            3: { date: "10 Jan", title: "💆 按摩行街", items: [{ t: "Day", l: "Asok 區", d: "c隊草、按摩、行街" }] },
+            3: { date: "10 Jan", title: "💆 按摩行街", items: [{ t: "Day", l: "Asok 區", d: "隊草、按摩、行街" }] },
             4: { date: "11 Jan", title: "🍢 Sutthisan", items: [{ t: "16:00", l: "Sutthisan 3號出口", d: "按摩、掃街、夜市、水果檔" }] },
-            5: { date: "12 Jan", title: "✈️ MDK 準備 (含備忘錄)", items: [{ t: "Day", l: "機場附近 Hotel", d: "最後採買與休整" }], special: 'memo' },
-            6: { date: "13 Jan", title: "🏠 返港 (含 Checklist)", items: [{ t: "05:00", l: "MDK 機場", d: "8am 機準時返香港", bolt: true }], special: 'checklist' }
+            5: { date: "12 Jan", title: "✈️ MDK 周邊", items: [{ t: "Day", l: "機場附近 Hotel", d: "最後採買與休整" }] },
+            6: { date: "13 Jan", title: "🏠 返港", items: [{ t: "05:00", l: "MDK 機場", d: "8am 機準時返香港", bolt: true }] }
         };
 
+        // 切換分頁
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.nav-item').forEach(i => i.classList.add('opacity-20'));
-            event.currentTarget.classList.remove('opacity-20');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
+            
+            const activeNav = document.getElementById('nav-' + tab);
+            if(activeNav) activeNav.classList.add('nav-active');
+            
             render();
         }
 
+        // 渲染主內容
         function render() {
             const c = document.getElementById('main-content');
             if (currentTab === 'plan') renderPlan(c);
+            else if (currentTab === 'lists') renderLists(c);
             else if (currentTab === 'wallet') renderWallet(c);
             else renderInfo(c);
         }
 
+        // 1. 行程頁面
         function renderPlan(c) {
             let btns = '';
-            for(let i=1; i<=6; i++) btns += `<button onclick="currentDay=${i};render()" class="w-10 h-10 rounded-xl font-black text-[10px] soft-shadow ${currentDay===i?'active-day':'bg-white text-gray-300'}">D${i}</button>`;
+            for(let i=1; i<=6; i++) {
+                btns += `<button onclick="currentDay=${i};render()" class="w-11 h-11 rounded-xl font-black text-[10px] soft-shadow btn-pill ${currentDay===i?'active-day':'bg-white text-gray-300'}">D${i}</button>`;
+            }
             
             const data = itinerary[currentDay];
-            let specialHtml = '';
-            
-            if (data.special === 'memo') {
-                specialHtml = `<div class="mt-8 bg-white p-6 rounded-[30px] soft-shadow"><h3 class="font-black mb-3 italic text-[#D9A08B]">Day 5 個人備忘錄</h3><textarea oninput="localStorage.setItem('bkk_memo', this.value)" class="h-32 text-xs" placeholder="輸入網址會自動變按鈕...">${localStorage.getItem('bkk_memo') || ''}</textarea></div>`;
-            } else if (data.special === 'checklist') {
-                const checks = getDB('bkk_chk').length ? getDB('bkk_chk') : [{id:1,t:"護照",d:false},{id:2,t:"機票QR",d:false},{id:3,t:"手信拿齊未",d:false}];
-                specialHtml = `<div class="mt-8 bg-white p-6 rounded-[30px] soft-shadow"><h3 class="font-black mb-3 italic text-[#D9A08B]">Day 6 行前檢查</h3><div class="space-y-3">${checks.map(i => `<div onclick="toggleChk(${i.id})" class="flex items-center gap-2 text-xs"><i class="fa-regular ${i.d?'fa-square-check text-[#D9A08B]':'fa-square'}"></i> ${i.t}</div>`).join('')}</div></div>`;
-                setDB('bkk_chk', checks);
-            }
+            c.innerHTML = `
+                <div class="mb-6"><img src="weed.png" class="w-full rounded-[30px] shadow-lg"></div>
+                <div class="flex justify-between mb-8 overflow-x-auto no-scrollbar gap-2 py-2">${btns}</div>
+                <div class="mb-4">
+                    <p class="formal-script text-[#D9A08B]">${data.date}</p>
+                    <h2 class="text-2xl font-black italic">${data.title}</h2>
+                </div>
+                <div class="space-y-4">
+                    ${data.items.map(i => `
+                        <div class="bg-white p-6 rounded-[25px] soft-shadow border-l-4 ${i.bolt?'border-[#D9A08B]':'border-[#A8B79B]'}">
+                            <h3 class="text-lg font-black">${i.l}</h3>
+                            <p class="text-[10px] text-gray-400 mt-1">${i.d}</p>
+                            ${i.bolt ? '<span class="text-[8px] font-black text-[#D9A08B] italic">⚡ CALL BOLT</span>' : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // 2. 清單頁面 (已拆分)
+        function renderLists(c) {
+            const checks = getDB('bkk_chk').length ? getDB('bkk_chk') : [
+                {id:1, t:"TDAC & SIM Card", d:false},
+                {id:2, t:"Passport & ID", d:false},
+                {id:3, t:"Ipad & charging", d:false},
+                {id:4, t:"手信拿齊未", d:false}
+            ];
+            setDB('bkk_chk', checks);
 
             c.innerHTML = `
-                <img src="weed.png" class="w-full rounded-[30px] shadow-lg mb-6">
-                <div class="flex justify-between mb-8 overflow-x-auto no-scrollbar gap-2 py-2">${btns}</div>
-                <div class="mb-4"><p class="formal-script text-[#D9A08B]">${data.date}</p><h2 class="text-2xl font-black italic">${data.title}</h2></div>
-                <div class="space-y-4">${data.items.map(i => `<div class="bg-white p-6 rounded-[25px] soft-shadow border-l-4 ${i.bolt?'border-[#D9A08B]':'border-[#A8B79B]'}"><h3 class="font-black">${i.l}</h3><p class="text-[10px] text-gray-400 mt-1">${i.d}</p></div>`).join('')}</div>
-                ${specialHtml}
+                <div class="bg-white p-8 rounded-[30px] soft-shadow">
+                    <h3 class="text-2xl font-black mb-6 italic text-[#D9A08B]">Checklist 📋</h3>
+                    <div class="space-y-4">
+                        ${checks.map(i => `
+                            <div onclick="toggleChk(${i.id})" class="flex items-center gap-3 text-sm cursor-pointer border-b border-gray-50 pb-3">
+                                <i class="fa-regular ${i.d ? 'fa-square-check text-[#D9A08B]' : 'fa-square'} text-xl"></i>
+                                <span class="${i.d ? 'line-through text-gray-300' : 'font-medium'}">${i.t}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="mt-6 bg-white p-8 rounded-[30px] soft-shadow">
+                    <h3 class="font-black mb-4 italic text-[#D9A08B]">Memo</h3>
+                    <textarea oninput="localStorage.setItem('bkk_memo', this.value)" class="h-32 text-xs" placeholder="備註網址或記事...">${localStorage.getItem('bkk_memo') || ''}</textarea>
+                </div>
             `;
         }
 
@@ -107,8 +156,39 @@
             setDB('bkk_chk', d); render();
         }
 
-        // Wallet & Info 邏輯同前... (略)
-        window.onload = render;
+        // 3. 錢包頁面
+        function renderWallet(c) {
+            c.innerHTML = `
+                <div class="bg-stone-800 p-6 rounded-[30px] text-white mb-6 soft-shadow">
+                    <p class="text-[10px] opacity-40 uppercase font-black tracking-widest">THB to HKD</p>
+                    <input id="calcInput" type="text" placeholder="100*0.24" class="w-full bg-transparent text-2xl font-black mt-2 focus:outline-none placeholder-stone-600 text-[#D9A08B]">
+                    <div id="calcResult" class="text-sm font-bold opacity-60 mt-1">≈ HKD 0.00</div>
+                </div>
+                <div class="text-center py-10 opacity-30 italic text-xs">記帳功能已備就緒...</div>
+            `;
+            document.getElementById('calcInput')?.addEventListener('input', (e) => {
+                try {
+                    const res = eval(e.target.value.replace(/[^-()\d/*+.]/g, '')) || 0;
+                    document.getElementById('calcResult').innerText = `≈ HKD ${(res * exchangeRate).toFixed(2)}`;
+                } catch(err) {}
+            });
+        }
+
+        // 4. 資訊頁面
+        function renderInfo(c) {
+            c.innerHTML = `
+                <div class="bg-[#A8B79B]/10 p-6 rounded-[30px] mb-4 text-center">
+                    <h3 class="font-black text-[#A8B79B] mb-2 uppercase italic text-sm">Weather Info</h3>
+                    <a href="https://www.accuweather.com/en/th/bangkok/318849/january-weather/318849" class="text-xs font-bold underline">1月天氣預報</a>
+                </div>
+                <div class="bg-white p-8 rounded-[30px] soft-shadow space-y-4">
+                    <div class="flex justify-between text-xs font-bold"><span>旅遊警察</span><span class="text-red-400">1155</span></div>
+                    <div class="flex justify-between text-xs font-bold"><span>急救專線</span><span class="text-red-400">1669</span></div>
+                </div>
+            `;
+        }
+
+        window.onload = () => switchTab('plan');
     </script>
 </body>
 </html>
